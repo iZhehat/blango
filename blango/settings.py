@@ -62,6 +62,7 @@ class Dev(Configuration):
         'django.contrib.messages',
         'django.contrib.staticfiles',
         "debug_toolbar",
+        'blango_auth',
         'blog',
         'crispy_forms',
         'crispy_bootstrap5',
@@ -103,6 +104,9 @@ class Dev(Configuration):
     # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
     DATABASES = values.DatabaseURLValue(f'sqlite:///{BASE_DIR}/db.sqlite3')
+
+    # Auth User
+    AUTH_USER_MODEL = "blango_auth.User"
 
 
     # Password validation
