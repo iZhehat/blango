@@ -167,6 +167,13 @@ class Dev(Configuration):
         },
     }
 
+    # Registration Configuration
+    ACCOUNT_ACTIVATION_DAYS = 7
+    REGISTRATION_OPEN = True
+
+    # Email Backend Configuration
+    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
 
     # Internationalization
     # https://docs.djangoproject.com/en/3.2/topics/i18n/
