@@ -33,6 +33,7 @@ class Dev(Configuration):
     DEBUG = values.BooleanValue(True)
 
     ALLOWED_HOSTS = ['*']
+    INTERNAL_IPS = ["192.168.10.226"]
 
     # Codio Specific Setup
     X_FRAME_OPTIONS = 'ALLOW-FROM ' + os.environ.get('CODIO_HOSTNAME') + '-8000.codio.io'
@@ -60,12 +61,14 @@ class Dev(Configuration):
         'django.contrib.sessions',
         'django.contrib.messages',
         'django.contrib.staticfiles',
+        "debug_toolbar",
         'blog',
         'crispy_forms',
         'crispy_bootstrap5',
     ]
 
     MIDDLEWARE = [
+        "debug_toolbar.middleware.DebugToolbarMiddleware",
         'django.middleware.security.SecurityMiddleware',
         'django.contrib.sessions.middleware.SessionMiddleware',
         'django.middleware.common.CommonMiddleware',
