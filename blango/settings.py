@@ -72,6 +72,7 @@ class Dev(Configuration):
         'allauth.socialaccount',
         'allauth.socialaccount.providers.google',
         'rest_framework',
+        'rest_framework.authtoken',
     ]
 
     # Allauth config
@@ -93,6 +94,14 @@ class Dev(Configuration):
         'django.contrib.messages.middleware.MessageMiddleware',
     #    'django.middleware.clickjacking.XFrameOptionsMiddleware',
     ]
+
+    REST_FRAMEWORK = {
+      "DEFAULT_AUTHENTICATION_CLASSES": [
+          "rest_framework.authentication.BasicAuthentication",
+          "rest_framework.authentication.SessionAuthentication",
+          "rest_framework.authentication.TokenAuthentication",
+      ]
+    }
 
     ROOT_URLCONF = 'blango.urls'
 
