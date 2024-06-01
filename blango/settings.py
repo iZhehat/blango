@@ -73,6 +73,7 @@ class Dev(Configuration):
         'allauth.socialaccount.providers.google',
         'rest_framework',
         'rest_framework.authtoken',
+        'drf_yasg'
     ]
 
     # Allauth config
@@ -228,6 +229,14 @@ class Dev(Configuration):
 
     CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
     CRISPY_TEMPLATE_PACK = 'bootstrap5'
+
+    # Swagger
+    SWAGGER_SETTINGS = {
+        "SECURITY_DEFINITIONS": {
+            "Token": {"type": "apiKey", "name": "Authorization", "in": "header"},
+            "Basic": {"type": "basic"},
+        }
+    }
 
 class Prod(Dev):
   DEBUG = False
