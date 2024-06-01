@@ -1,11 +1,19 @@
 from rest_framework.urlpatterns import format_suffix_patterns
+from rest_framework.routers import DefaultRouter
 from django.urls import path, include, re_path
 from drf_yasg import openapi
 import os
 
 from rest_framework.authtoken import views
 from drf_yasg.views import get_schema_view
-from blog.api.views import PostList, PostDetail, UserDetail
+from blog.api.views import (
+    # commented because we change the Post to ViewSet
+    # PostList, 
+    # PostDetail, 
+    UserDetail, 
+    TagViewSet,
+    PostViewSet
+  )
 
 
 schema_view = get_schema_view(
@@ -18,12 +26,18 @@ schema_view = get_schema_view(
     public=True,
 )
 
+router = DefaultRouter()
+router.register("tags", TagViewSet)
+router.register("posts", PostViewSet)
+
 urlpatterns = [
-    path("posts/", PostList.as_view(), name="api_post_list"),
-    path("posts/<int:pk>", PostDetail.as_view(), name="api_post_detail"),
+    # commented because we change the Post to ViewSet
+    # path("posts/", PostList.as_view(), name="api_post_list"),
+    # path("posts/<int:pk>", PostDetail.as_view(), name="api_post_detail"),
     path("auth/", include("rest_framework.urls")),
     path("token-auth/", views.obtain_auth_token),
     path("users/<str:email>", UserDetail.as_view(), name="api_user_detail"),
+    path("", include(router.urls)),
 ]
 
 urlpatterns += [
