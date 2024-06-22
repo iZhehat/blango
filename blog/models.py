@@ -18,7 +18,7 @@ class Comment(models.Model):
   object_id = models.PositiveIntegerField(db_index=True)
   content_object = GenericForeignKey("content_type", "object_id")
   created_at = models.DateTimeField(auto_now_add=True, db_index=True)
-  midified_at = models.DateTimeField(auto_now=True)
+  modified_at = models.DateTimeField(auto_now=True)
 
 
 class Tag(models.Model):
