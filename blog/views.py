@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.utils import timezone 
 from django.shortcuts import redirect
 import logging
+from django.urls import reverse
 
 logger = logging.getLogger(__name__)
 
@@ -36,4 +37,6 @@ def get_ip(request):
   return HttpResponse(request.META['REMOTE_ADDR'])
 
 def post_table(request):
-    return render(request, "blog/post-table.html")
+    return render(
+        request, "blog/post-table.html", {"post_list_url": reverse("post-list")}
+    )
